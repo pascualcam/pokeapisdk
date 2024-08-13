@@ -1,8 +1,21 @@
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
-from .pokemon import Pokemon
-from .shared import Description, Effect, EvolutionChain, MachineVersionDetail, Name, VerboseEffect, Version, VersionGroupFlavorText
-from .generation import GenerationGameIndex
+
+if TYPE_CHECKING:
+    from .pokemon import Pokemon
+    from .generation import GenerationGameIndex
+    from .shared import (
+        Name,
+        Description,
+        Effect,
+        EvolutionChain,
+        MachineVersionDetail,
+        VerboseEffect,
+        Version,
+        VersionGroupFlavorText,
+    )
+
 
 @dataclass
 class Item:
@@ -13,35 +26,35 @@ class Item:
     fling_effect: 'ItemFlingEffect'
     attributes: list['ItemAttribute']
     category: 'ItemCategory'
-    effect_entries: list[VerboseEffect]
-    flavor_text_entries: list[VersionGroupFlavorText]
-    game_indices: list[GenerationGameIndex]
-    names: list[Name]
+    effect_entries: list['VerboseEffect']
+    flavor_text_entries: list['VersionGroupFlavorText']
+    game_indices: list['GenerationGameIndex']
+    names: list['Name']
     sprites: "ItemSprites"
     held_by_pokemon: list['ItemHolderPokemon']
-    baby_trigger_for: EvolutionChain
-    machines: list[MachineVersionDetail]
+    baby_trigger_for: 'EvolutionChain'
+    machines: list['MachineVersionDetail']
 
 
 @dataclass
 class ItemAttribute:
     id: int
     name: str
-    items: list[Item]
-    names: list[Name]
-    descriptions: list[Description]
+    items: list['Item']
+    names: list['Name']
+    descriptions: list['Description']
 
 
 @dataclass
 class ItemHolderPokemon:
-    pokemon: Pokemon
+    pokemon: 'Pokemon'
     version_details: "ItemHolderPokemonVersionDetail"
 
 
 @dataclass
 class ItemHolderPokemonVersionDetail:
     rarity: int
-    version: Version
+    version: 'Version'
 
 @dataclass
 class ItemSprites:
@@ -52,8 +65,8 @@ class ItemSprites:
 class ItemCategory:
     id: int
     name: str
-    items: list[Item]
-    names: list[Name]
+    items: list['Item']
+    names: list['Name']
     pocket: "ItemPocket"
 
 
@@ -61,8 +74,8 @@ class ItemCategory:
 class ItemPocket:
     id: int
     name: str
-    categories: list[ItemCategory]
-    names: list[Name]
+    categories: list['ItemCategory']
+    names: list['Name']
 
 
 @dataclass
@@ -70,7 +83,7 @@ class ItemFlingEffect:
     id: int
     name: str
     effect_entries: list["Effect"]
-    items: list[Item]
+    items: list['Item']
 
 
 @dataclass

@@ -1,21 +1,28 @@
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
-from sdk.models.encounter import VersionEncounterDetail
-from .generation import Generation
-from .shared import (
-    Name,
-    NamedAPIResource, 
-    Ability, 
-    EggGroup,
-    EvolutionChain,
-    PalParkEncounterArea,
-    FlavorText,
-    Description,
-    Genus,
-    GrowthRate,
-    VersionGroup,
-    Type
-)
+
+if TYPE_CHECKING:
+    from .item import Item
+    from .generation import Generation
+    from .move import Move
+    from .shared import (
+        Name,
+        Ability, 
+        EggGroup,
+        EvolutionChain,
+        PalParkEncounterArea,
+        FlavorText,
+        Description,
+        Genus,
+        GrowthRate,
+        MoveLearnMethod, 
+        Version,
+        VersionGroup,
+        VersionEncounterDetail,
+        Type,
+        Stat
+    )
 
 @dataclass
 class PokemonEntry:
@@ -27,11 +34,11 @@ class Pokedex:
     id: int
     name: str
     is_main_series: bool
-    descriptions: list[Description]
-    names: list[Name]
+    descriptions: list['Description']
+    names: list['Name']
     pokemon_entries: list[PokemonEntry]
-    region: VersionGroup
-    version_groups: list[VersionGroup]
+    region: 'VersionGroup'
+    version_groups: list['VersionGroup']
 
 @dataclass
 class PokemonSpeciesDexEntry:
@@ -41,7 +48,7 @@ class PokemonSpeciesDexEntry:
 @dataclass
 class PokemonFormType:
     slot: int
-    type: Type
+    type: 'Type'
     
 @dataclass
 class PokemonFormSprites:
@@ -54,13 +61,13 @@ class PokemonFormSprites:
 class PokemonColor:
     id: int
     name: str
-    names: list[Name]
+    names: list['Name']
     
 @dataclass
 class PokemonShape:
     id: int
     name: str
-    names: list[Name]
+    names: list['Name']
     pokemon_species: 'PokemonSpecies'
 
 
@@ -73,7 +80,7 @@ class PokemonSpeciesVariety:
 class PokemonHabitat:
     id: int
     name: str
-    names: list[Name]
+    names: list['Name']
     pokemon_species: list['PokemonSpecies']
 
 @dataclass
@@ -90,14 +97,14 @@ class PokemonAbility:
 
 @dataclass
 class PokemonStat:
-    stat: NamedAPIResource
+    stat: 'Stat'
     effort: int
     base_stat: int
     
 @dataclass
 class PokemonType:
     slot: int
-    type
+    type: 'Type'
     
 @dataclass    
 class PokemonForm:
@@ -109,43 +116,43 @@ class PokemonForm:
     is_battle_only: bool
     is_mega: bool
     form_name: str
-    pokemon: NamedAPIResource
+    pokemon: 'Pokemon'
     types: PokemonFormType
     sprites: PokemonFormSprites
-    version_group: NamedAPIResource
-    names: list[Name]
-    form_names: list[Name]
+    version_group: 'VersionGroup'
+    names: list['Name']
+    form_names: list['Name']
     
 @dataclass
 class VersionGameIndex:
     game_index: int
-    version: NamedAPIResource
+    version: 'Version'
 
 @dataclass
 class PokemonHeldItemVersion:
-    version: NamedAPIResource
+    version: 'Version'
     rarity: int
 
 @dataclass
 class PokemonHeldItem:
-    item: NamedAPIResource
+    item: 'Item'
     version_details: list[PokemonHeldItemVersion]
 
 @dataclass
 class PokemonMoveVersion:
-    move_learn_method: NamedAPIResource
-    version_group: NamedAPIResource
+    move_learn_method: 'MoveLearnMethod'
+    version_group: 'VersionGroup'
     level_learned_at: int
 
 @dataclass
 class PokemonMove:
-    move: NamedAPIResource
+    move: 'Move'
     version_group_details: list[PokemonMoveVersion]
 
 @dataclass
 class PokemonEncounter:
     pokemon: 'Pokemon'
-    version_details: list[VersionEncounterDetail]
+    version_details: list['VersionEncounterDetail']
 
 
 @dataclass
@@ -178,21 +185,21 @@ class PokemonSpecies:
     hatch_counter: int
     has_gender_differences: bool
     forms_switchable: bool
-    growth_rate: GrowthRate
+    growth_rate: 'GrowthRate'
     pokedex_numbers: list[PokemonSpeciesDexEntry]
-    egg_groups: list[EggGroup]
+    egg_groups: list['EggGroup']
     color: PokemonColor
     shape: PokemonShape
     evolves_from_species: 'PokemonSpecies'
-    evolution_chain: EvolutionChain
+    evolution_chain: 'EvolutionChain'
     habitat: PokemonHabitat
-    generation: Generation
-    names: list[Name]
-    pal_park_encounters: list[PalParkEncounterArea]
-    flavor_text_entries: list[FlavorText]
-    form_descriptions: list[Description]
-    genera: list[Genus]
-    varieties: list[PokemonSpeciesVariety]    
+    generation: 'Generation'
+    names: list['Name']
+    pal_park_encounters: list['PalParkEncounterArea']
+    flavor_text_entries: list['FlavorText']
+    form_descriptions: list['Description']
+    genera: list['Genus']
+    varieties: list['PokemonSpeciesVariety']    
 
 @dataclass
 class Pokemon:
@@ -205,7 +212,7 @@ class Pokemon:
     weight: int
     abilities: list[PokemonAbility]
     forms: list[PokemonForm]
-    game_indices: list[VersionGameIndex]
+    game_indices: list['VersionGameIndex']
     held_items: list[PokemonHeldItem]
     location_area_encounters: str
     moves: list[PokemonMove]

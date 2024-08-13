@@ -1,22 +1,25 @@
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
-from sdk.models.generation import Generation
-from sdk.models.pokemon import Pokemon
-from sdk.models.shared import (
-    AbilityEffectChange, 
-    ContestCombosSets, 
-    ContestType, 
-    Description, 
-    Effect, 
-    FlavorText, Language, 
-    MachineVersionDetail,  
-    MoveDamageClass, 
-    Name, 
-    Type, 
-    VerboseEffect, 
-    VersionGroup,
-    Stat
-)
+
+if TYPE_CHECKING:
+    from .generation import Generation
+    from .pokemon import Pokemon
+    from .shared import (
+        AbilityEffectChange, 
+        ContestCombosSets, 
+        ContestType, 
+        Description, 
+        Effect, 
+        FlavorText, Language, 
+        MachineVersionDetail,  
+        MoveDamageClass, 
+        Name, 
+        Type, 
+        VerboseEffect, 
+        VersionGroup,
+        Stat
+    )
 
 @dataclass
 class Move:
@@ -27,23 +30,23 @@ class Move:
     pp: int
     priority: int
     power: int
-    contest_combos: ContestCombosSets
-    contest_type: ContestType
+    contest_combos: 'ContestCombosSets'
+    contest_type: 'ContestType'
     contest_effect: 'ContestEffect'
-    damage_class: MoveDamageClass
-    effect_entries: list[VerboseEffect]
-    effect_changes: list[AbilityEffectChange]
-    learned_by_pokemon: list[Pokemon]
+    damage_class: 'MoveDamageClass'
+    effect_entries: list['VerboseEffect']
+    effect_changes: list['AbilityEffectChange']
+    learned_by_pokemon: list['Pokemon']
     flavor_text_entries: list['MoveFlavorText']
-    generation: Generation
-    machines: list[MachineVersionDetail]
+    generation: 'Generation'
+    machines: list['MachineVersionDetail']
     meta: 'MoveMetaData'
-    names: list[Name]
+    names: list['Name']
     past_values: list["PastMoveStatValues"]
     stat_changes: list["MoveStatChange"]
     super_contest_effect: "SuperContestEffect"
     target: "MoveTarget"
-    type: Type
+    type: 'Type'
 
 
 @dataclass
@@ -52,26 +55,26 @@ class PastMoveStatValues:
     effect_chance: int
     power: int
     pp: int
-    effect_entries: list[VerboseEffect]
-    type: Type
-    version_group: VersionGroup
+    effect_entries: list['VerboseEffect']
+    type: 'Type'
+    version_group: 'VersionGroup'
 
 
 @dataclass
 class SuperContestEffect:
     id: int
     appeal: int
-    flavor_text_entries: list[FlavorText]
-    moves: list[Move]
+    flavor_text_entries: list['FlavorText']
+    moves: list['Move']
 
 
 @dataclass
 class MoveTarget:
     id: int
     name: str
-    descriptions: list[Description]
-    moves: list[Move]
-    names: list[Name]
+    descriptions: list['Description']
+    moves: list['Move']
+    names: list['Name']
 
 
 @dataclass
@@ -79,15 +82,15 @@ class ContestEffect:
     id: int
     appeal: int
     jam: int
-    effect_entries: list[Effect]
-    flavor_text_entries: list[FlavorText]
+    effect_entries: list['Effect']
+    flavor_text_entries: list['FlavorText']
 
 
 @dataclass
 class MoveFlavorText:
     flavor_text: str
-    language: Language
-    version_group: VersionGroup
+    language: 'Language'
+    version_group: 'VersionGroup'
 
 
 @dataclass
@@ -110,22 +113,22 @@ class MoveMetaData:
 class MoveCategory:
     id: int
     name: str
-    moves: list[Move]
-    descriptions: list[Description]
+    moves: list['Move']
+    descriptions: list['Description']
 
 
 @dataclass
 class MoveAilment:
     id: int
     name: str
-    moves: list[Move]
-    names: list[Name]
+    moves: list['Move']
+    names: list['Name']
 
 
 @dataclass
 class MoveStatChange:
     change: int
-    stat: Stat
+    stat: 'Stat'
 
 
 @dataclass
@@ -145,10 +148,10 @@ class MoveBattleStylePreference:
 class MoveBattleStyle:
     id: int
     name: str
-    names: list[Name]
+    names: list['Name']
 
 
 @dataclass
 class MoveStatAffect:
     change: int
-    move: Move
+    move: 'Move'

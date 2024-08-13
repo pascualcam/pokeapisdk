@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 
-from sdk.models.item import Item
-from sdk.models.pokemon import PokemonSpecies
-from sdk.models.shared import Location, Move, Name, Type
+from .item import Item
+from .pokemon import PokemonSpecies
+from .shared import Location, Move, Name, Type
 
 
 @dataclass

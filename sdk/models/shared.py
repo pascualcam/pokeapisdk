@@ -1,16 +1,18 @@
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
-from sdk.models.encounter import EncounterMethodRate
-from sdk.models.item import Item
-from sdk.models.move import Move, MoveBattleStylePreference, MoveStatAffectSets
-from .generation import Generation, GenerationGameIndex
-from .pokemon import (
-    AbilityPokemon,
-    Pokemon,
-    PokemonEncounter,
-    PokemonSpecies,
-    Pokedex
-)
+
+if TYPE_CHECKING:
+    from .item import Item
+    from .move import Move, MoveBattleStylePreference, MoveStatAffectSets
+    from .generation import Generation, GenerationGameIndex
+    from .pokemon import (
+        AbilityPokemon,
+        Pokemon,
+        PokemonEncounter,
+        PokemonSpecies,
+        Pokedex
+    )
 
 @dataclass
 class NamedAPIResource:
@@ -39,12 +41,12 @@ class Ability:
     id: int
     name: str
     is_main_series: bool
-    generation: Generation
+    generation: 'Generation'
     names: list[Name]
     effect_entries: list['VerboseEffect']
     effect_changes: list['AbilityEffectChange']
     flavor_text_entries: list['AbilityFlavorText']
-    pokemon: list[AbilityPokemon]
+    pokemon: list['AbilityPokemon']
 
 
 @dataclass
@@ -79,7 +81,7 @@ class Location:
     string: str
     region: 'Region'
     names: list[Name]
-    game_indices: list[GenerationGameIndex]
+    game_indices: list['GenerationGameIndex']
     areas: list['LocationArea']
 
 
@@ -91,7 +93,7 @@ class LocationArea:
     encounter_method_rates: list['EncounterMethodRate']
     location: Location
     names: list[Name]
-    pokemon_encounters: list[PokemonEncounter]
+    pokemon_encounters: list['PokemonEncounter']
 
 
 @dataclass
@@ -100,7 +102,7 @@ class Stat:
     name: str
     game_index: int
     is_battle_only: bool
-    affecting_moves: MoveStatAffectSets
+    affecting_moves: 'MoveStatAffectSets'
     affecting_natures: 'NatureStatAffectSets'
     characteristics: list["Characteristic"]
     move_damage_class: "MoveDamageClass"
@@ -121,7 +123,7 @@ class Nature:
     hates_flavor: 'BerryFlavor'
     likes_flavor: 'BerryFlavor'
     pokeathlon_stat_changes: list['NatureStatChange']
-    move_battle_style_preferences: list[MoveBattleStylePreference]
+    move_battle_style_preferences: list['MoveBattleStylePreference']
     names: list[Name]
     
 @dataclass
@@ -137,7 +139,7 @@ class MoveDamageClass:
     id: int
     name: str
     descriptions: list['Description']
-    moves: list[Move]
+    moves: list['Move']
     names: list[Name]
     
 @dataclass
@@ -178,8 +180,8 @@ class ContestCombosSets:
 
 @dataclass
 class ContestComboDetail:
-    use_before: list[Move]
-    use_after: list[Move]
+    use_before: list['Move']
+    use_after: list['Move']
 
 
 @dataclass
@@ -223,7 +225,7 @@ class Berry:
     soil_dryness: int
     firmness: 'BerryFirmness'
     flavors: list['BerryFlavorMap']
-    item: Item
+    item: 'Item'
     natural_gift_type: 'Type'
 
 
@@ -263,7 +265,7 @@ class PalParkArea:
 class PalParkEncounterSpecies:
     base_score: int
     rate: int
-    pokemon_species: PokemonSpecies
+    pokemon_species: 'PokemonSpecies'
 
     
 @dataclass
@@ -285,7 +287,7 @@ class GrowthRate:
     formula: str
     description: list[Description]
     levels: list['GrowthRateExperienceLevel']
-    pokemon_species: list[PokemonSpecies]
+    pokemon_species: list['PokemonSpecies']
 
 
 @dataclass
@@ -300,8 +302,8 @@ class Region:
     locations: list[Location]
     name: str
     names: list[Name]
-    main_generation: Generation
-    pokedexes: list[Pokedex]
+    main_generation: 'Generation'
+    pokedexes: list['Pokedex']
     version_groups: list['VersionGroup']
 
 
@@ -316,8 +318,8 @@ class Version:
 @dataclass
 class Machine:
     id: int
-    item: Item
-    move: Move
+    item: 'Item'
+    move: 'Move'
     version_group: 'VersionGroup'
 
 
@@ -332,9 +334,9 @@ class VersionGroup:
     id: int
     name: str
     order: int
-    generation: Generation
+    generation: 'Generation'
     move_learn_methods: list['MoveLearnMethod']
-    pokedexes: list[Pokedex]
+    pokedexes: list['Pokedex']
     regions: list[Region]
     versions: Version
 
@@ -352,12 +354,12 @@ class Type:
     name: str
     damage_relations: 'TypeRelations'
     past_damage_relations: list['TypeRelationsPast']
-    game_indices: list[GenerationGameIndex]
-    generation: Generation
+    game_indices: list['GenerationGameIndex']
+    generation: 'Generation'
     move_damage_class: 'MoveDamageClass'
     names: list[Name]
-    pokemon: list[Pokemon]
-    moves: list[Move]
+    pokemon: list['Pokemon']
+    moves: list['Move']
 
 
 @dataclass
@@ -372,5 +374,57 @@ class TypeRelations:
 
 @dataclass
 class TypeRelationsPast:
-    generation: Generation
+    generation: 'Generation'
     damage_relations: 'TypeRelations'
+
+
+@dataclass
+class EncounterMethodRate:
+    encounter_method: "EncounterMethod"
+    version_details: list["EncounterVersionDetails"]
+
+
+@dataclass
+class EncounterVersionDetails:
+    rate: int
+    version: Version
+
+
+@dataclass
+class VersionEncounterDetail:
+    version: "Version"
+    max_chance: int
+    encounter_details: list["Encounter"]
+
+
+@dataclass
+class Encounter:
+    min_level: int
+    max_level: int
+    condition_values: list["EncounterConditionValue"]
+    chance: int
+    method: "EncounterMethod"
+
+
+@dataclass
+class EncounterConditionValue:
+    id: int
+    name: str
+    condition: "EncounterCondition"
+    names: list[Name]
+
+
+@dataclass
+class EncounterCondition:
+    id: int
+    name: str
+    names: list[Name]
+    values: list["EncounterConditionValue"]
+
+
+@dataclass
+class EncounterMethod:
+    id: int
+    name: str
+    order: int
+    names: list[Name]
