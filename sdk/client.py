@@ -9,37 +9,33 @@ class PokeAPIClient:
         self.base_url = base_url
     
     def get_pokemon(self, identifier: Union[str, int]) -> Pokemon:
-        '''
-        Get a pokemon by name or id
-        '''
+        """Get a pokemon by name or id"""
         response = self._get(f"pokemon/{identifier}")
+
         return Pokemon(**response)
 
     def get_generation(self, identifier: Union[str, int]) -> Generation:
-        '''
-        Get a pokemon generation by name or id
-        '''
+        """Get a pokemon generation by name or id"""
         response = self._get(f"generation/{identifier}")
+
         return Generation(**response)
     
-    def get_pokemon_list(self) -> List[Dict[str, Any]]:
-        '''
-        Get a list of pokemons
-        '''
-        endpoint = "pokemon"
+    def get_pokemons_list(self, limit=5, offset=0) -> List[Dict[str, Any]]:
+        """Get a list of pokemons"""
+        endpoint = f"pokemon?limit={limit}&offset={offset}"
         results = []
+        
         while endpoint:
             response = self._get(endpoint)
             results.extend(response['results'])
             endpoint = response['next'].replace(self.base_url, '') if response['next'] else None
         return results
     
-    def get_generation_list(self) -> List[Dict[str, Any]]:
-        '''
-        Get a list of pokemon generations
-        '''
-        endpoint = "generation"
+    def get_generations_list(self, limit=5, offset=5) -> List[Dict[str, Any]]:
+        """Get a list of pokemon generations"""
+        endpoint = f"generation?limit={limit}&offset={offset}"
         results = []
+
         while endpoint:
             response = self._get(endpoint)
             results.extend(response["results"])

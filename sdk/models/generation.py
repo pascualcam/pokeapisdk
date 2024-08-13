@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from .pokemon import PokemonSpecies
+from .pokemon import NamedAPIResource, PokemonSpecies
 
 
 @dataclass
@@ -12,4 +12,4 @@ class Generation:
     moves: list
     types: list
     version_groups: list
-    pokemon_species: list[PokemonSpecies]
+    pokemon_species: list[NamedAPIResource]

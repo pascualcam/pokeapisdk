@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import List
 
 @dataclass
 class NamedAPIResource:
@@ -8,18 +9,20 @@ class NamedAPIResource:
 
 @dataclass
 class PokemonSpecies:
-    id: int
     name: str
-    order: int
-    gender_rate: int
-    capture_rate: int
-    base_happiness: int
-    is_baby: bool
-    is_legendary: bool
-    is_mythical: bool
-    hatch_counter: int
-    has_gender_differences: bool
-    forms_switchable: bool
+    # url: str
+    # id: int
+    # name: str
+    # order: int
+    # gender_rate: int
+    # capture_rate: int
+    # base_happiness: int
+    # is_baby: bool
+    # is_legendary: bool
+    # is_mythical: bool
+    # hatch_counter: int
+    # has_gender_differences: bool
+    # forms_switchable: bool
 
 @dataclass
 class Pokemon:
@@ -30,7 +33,7 @@ class Pokemon:
     is_default: bool
     order: int
     weight: int
-    abilities: list
+    abilities: List[NamedAPIResource]
     past_abilities: list
     forms: list
     game_indices: list
