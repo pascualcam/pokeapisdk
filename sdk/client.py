@@ -1,5 +1,5 @@
 import requests
-from typing import Union
+from typing import Any, Dict, List, Union
 from models.pokemon import Pokemon
 from models.generation import Generation
 
@@ -7,7 +7,7 @@ from models.generation import Generation
 class PokeAPIClient:
     def __init__(self, base_url="https://pokeapi.co/api/v2/"):
         self.base_url = base_url
-
+    
     def get_pokemon(self, identifier: Union[str, int]) -> Pokemon:
         '''
         Get a pokemon by name or id
@@ -21,6 +21,34 @@ class PokeAPIClient:
         '''
         response = self._get(f"generation/{identifier}")
         return Generation(**response)
+    
+    def get_pokemon_list(self) -> List[Dict[str, Any]]:
+        '''
+        Get a list of pokemons
+        '''
+        endpoint = "pokemon"
+        results = []
+        while endpoint:
+            response = self._get(endpoint)
+            results.extend(response['results'])
+            endpoint = response['next'].replace(self.base_url, '') if response['next'] else None
+        return results
+    
+    def get_generation_list(self) -> List[Dict[str, Any]]:
+        '''
+        Get a list of pokemon generations
+        '''
+        endpoint = "generation"
+        results = []
+        while endpoint:
+            response = self._get(endpoint)
+            results.extend(response["results"])
+            endpoint = (
+                response["next"].replace(self.base_url, "")
+                if response["next"]
+                else None
+            )
+        return results
     
     def _get(self, endpoint):
         url = f"{self.base_url}{endpoint}"
