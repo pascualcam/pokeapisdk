@@ -8,11 +8,20 @@ class PokeAPIClient:
     def __init__(self, base_url="https://pokeapi.co/api/v2/"):
         self.base_url = base_url
 
-    def get_paginated(self, url: str):
+    def get_paginated(self, url: str, limit: int = None, offset: int = 0):
         results = []
         while url:
-            response = self._get(url)
-            results.extend(response["results"])
+            if limit is not None:
+                url_params = f"{url}?limit={limit}&offset={offset}"
+            else:
+                url_params = url
+                
+            response = self._get(url_params)
+            results.extend(response.get("results", []))
+            
+            if limit is not None:
+                offset += len(response.get("results", []))
+                
             url = response.get("next")
             if url:
                 url = url.replace(self.base_url, "")
