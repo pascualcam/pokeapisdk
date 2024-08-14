@@ -24,6 +24,21 @@ for pokemon in pokemons:
 
 ```
 
+#### Running the code
+
+Three files provide implementations to interact with PokeAPI from the command line:
+
+- `pokemon_random.py`
+    - Provide a pokemon id (by name or id) or a random pokemon will be displayed
+    - Provide a generation id or random generation will be displayed
+
+- `pokemon_list.py`
+    - Returns a list of all or `n` pokemons
+    - Returns a list of all generations
+
+- `species.py`
+    - For a given generation id, it returns all the species that were introduced with this generation
+
 ### Testing
 
 A test file `test_client.py` includes simple scenarios to test the SDK. Specifically, it tests the following endpoints:
@@ -38,8 +53,6 @@ A test file `test_client.py` includes simple scenarios to test the SDK. Specific
 
 - Design
 
-    The design of the SDK
-
     - Endpoints:
         - `get_pokemon -> Pokemon`: get a single pokemon by id or name
         - `get_generation -> Generation`: get a generation by id or name
@@ -49,7 +62,7 @@ A test file `test_client.py` includes simple scenarios to test the SDK. Specific
 
 - Assumptions
 
-    - This SDK relies on the data integrity of the PokeAPI
+    - The SDK relies on the data integrity of the PokeAPI
     - The availability of the API is assumed whenever the client is utilized
     - The data format relied upon by this SDK is JSON
     - The SDK contains basic error handling and a logger is included for debugging

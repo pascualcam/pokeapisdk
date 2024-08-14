@@ -13,18 +13,20 @@ def main(all_pokemons: bool, all_gen: bool):
     pokeclient = PokeAPIClient()
     
     try:
+        limit = click.prompt(
+            "Select how many Pokemons to display from the top", default=10, type=int
+        )
+        logger.info("This may take a while...")
+        pokemons: List[Pokemon] = pokeclient.get_pokemons_list()
         if all_pokemons:
-            limit = click.prompt("Select how many Pokemons to display from the top", default=10, type=int)
-            logger.info("This may take a while...")
-            pokemons: List[Pokemon] = pokeclient.get_pokemons_list()
             logger.info(f"Total number of pokemons: {len(pokemons)}")
             logger.info("List of Pokemons:")
             for pokemon in pokemons[:limit]:
                 logger.info(f"  {pokemon.name} (id: {pokemon.id})")
 
+        generations: List[Generation] = pokeclient.get_generations_list()
+        logger.info(f"Total number of Pokemon generations: {len(generations)}")
         if all_gen:
-            generations: List[Generation] = pokeclient.get_generations_list()
-            logger.info(f"Total number of Pokemon generations: {len(generations)}")
             logger.info("List of Pokemon generations:")
             for g in generations:
                 logger.info(f"{g.name} (id: {g.id})")
