@@ -48,15 +48,13 @@ class PokeAPIClient:
         """Get a pokemon generation by name or id"""
         response = self._get(f"generation/{identifier}")
         main_region = NamedAPIResource(**response["main_region"])
-        pokemon_species = [PokemonSpecies(**species) for species in response["pokemon_species"]]
+        pokemon_species = [NamedAPIResource(**species) for species in response["pokemon_species"]]
         return Generation(
             id=response["id"],
             name=response["name"],
             main_region=main_region,
             pokemon_species=pokemon_species,            
         )
-        # response = self._get(f"generation/{identifier}")
-        # return Generation(**response)
     
     def get_generations_list(self) -> List[Generation]:
         """Get a list of pokemon generations"""

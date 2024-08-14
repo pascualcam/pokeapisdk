@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from typing import List
-from .pokemon import NamedAPIResource, PokemonSpecies
+from .pokemon import NamedAPIResource
 
 
 @dataclass

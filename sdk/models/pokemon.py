@@ -11,18 +11,7 @@ class NamedAPIResource:
 class PokemonSpecies:
     name: str
     url: str
-    # id: int
-    # name: str
-    # order: int
-    # gender_rate: int
-    # capture_rate: int
-    # base_happiness: int
-    # is_baby: bool
-    # is_legendary: bool
-    # is_mythical: bool
-    # hatch_counter: int
-    # has_gender_differences: bool
-    # forms_switchable: bool
+
 
 @dataclass
 class Pokemon:
