@@ -4,7 +4,7 @@ import logger
 
 
 @click.command()
-@click.option("--generation_id", prompt="Enter a generation name or id", required=True,type=int)
+@click.option("--generation_id", prompt="Enter a generation name or id", required=True, type=int)
 def main(generation_id):
     pokeclient = PokeAPIClient()
     generation_id = pokeclient.get_generation(generation_id).name
