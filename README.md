@@ -12,6 +12,7 @@ Easily interact with the best [Pokemon](https://pokeapi.co/) database in the web
 
 ```python
 import pokeapisdk
+
 from pokeapisdk.client import PokeAPIClient
 
 poke = PokeAPIClient()
