@@ -26,18 +26,34 @@ for pokemon in pokemons:
 
 ### Testing
 
-A test file `test_client.py` includes simple scenarios to test the SDK. Specifically, it tests:
+A test file `test_client.py` includes simple scenarios to test the SDK. Specifically, it tests the following endpoints:
 
-- get_pokemon
-- get_generation
-- get_species_by_generation
+- `get_pokemon`
+- `get_generation`
+- `get_species_by_generation`
 
 ## SDK Design
 
 ### Key aspects
 
-- temp
-- temp
+- Design
+    The design of the SDK
+
+    - Endpoints:
+        - `get_pokemon`: get a single pokemon by id or name
+        - `get_generation`: get a generation by id or name
+        - `get_species_by_generation`: get a list of all the species released for a specified generation
+        - `get_pokemons_list`: get a list of all or `n` pokemons available
+        - `get_generations_list`: get a list of all generations available
+
+- Assumptions
+    The assumptions of the SDK
+
+- Limitations
+    The limitations of the SDK
+
+- Pagination
+    Some text about pagination
 
 ### Tools
 
