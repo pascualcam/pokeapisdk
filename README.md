@@ -65,6 +65,7 @@ A test file `test_client.py` includes simple scenarios to test the SDK. Specific
 
     - Pagination is implemented to manage data transfer efficiently
     - Limit and offset can optionally be passed to the `get_pokemons_list` and `get_generations_list` endpoints
+    
         Defaults:
         - `limit: int = None`
         - `offset: int = 0`
