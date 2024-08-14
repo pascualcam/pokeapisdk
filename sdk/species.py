@@ -10,9 +10,7 @@ def main(generation_id):
     generation_id = pokeclient.get_generation(generation_id).name
     species_names = pokeclient.get_species_by_generation(generation_id)
     
-    logger.info(
-        f"New species introduced in {generation_id}: {len(species_names)}"
-    )
+    logger.info(f"New species introduced in {generation_id}: {len(species_names)}")
     for name in species_names:    
         logger.info(f"  {name}")
 
