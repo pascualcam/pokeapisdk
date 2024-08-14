@@ -41,23 +41,32 @@ A test file `test_client.py` includes simple scenarios to test the SDK. Specific
     The design of the SDK
 
     - Endpoints:
-        - `get_pokemon`: get a single pokemon by id or name
-        - `get_generation`: get a generation by id or name
-        - `get_species_by_generation`: get a list of all the species released for a specified generation
-        - `get_pokemons_list`: get a list of all or `n` pokemons available
-        - `get_generations_list`: get a list of all generations available
+        - `get_pokemon -> Pokemon`: get a single pokemon by id or name
+        - `get_generation -> Generation`: get a generation by id or name
+        - `get_species_by_generation -> List[str]`: get a list of all the species released for a specified generation
+        - `get_pokemons_list -> List[Pokemon]`: get a list of all or `n` pokemons available
+        - `get_generations_list -> List[Generation]`: get a list of all generations available
 
 - Assumptions
 
-    The assumptions of the SDK
+    - This SDK relies on the data integrity of the PokeAPI
+    - The availability of the API is assumed whenever the client is utilized
+    - The data format relied upon by this SDK is JSON
+    - The SDK contains basic error handling and a logger is included for debugging
 
 - Limitations
 
-    The limitations of the SDK
+    - No rate limiting is implemented or whatsoever
+    - No data accuracy or checks are implemented - the SDK assumes all data from the source is correct
+    - A simple pagination is implemented as part of this SDK but specific behavior must be added
+    - This SDK is intended to be compatible with `v2` of the PokeAPI
 
 - Pagination
 
-    Some text about pagination
+    - Pagination is implemented to manage data transfer efficiently. 
+    - Limit and offset are not part of the implementation
+      - limit
+      - offset
 
 ### Tools
 
