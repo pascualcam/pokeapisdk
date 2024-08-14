@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import List
 from .pokemon import NamedAPIResource, PokemonSpecies
 
 
@@ -6,10 +7,10 @@ from .pokemon import NamedAPIResource, PokemonSpecies
 class Generation:
     id: int
     name: str
-    abilities: list
-    names: list
-    main_region: list
-    moves: list
-    types: list
-    version_groups: list
-    pokemon_species: list[NamedAPIResource]
+    abilities: List[NamedAPIResource] = None
+    names: List[dict] = None
+    main_region: NamedAPIResource = None
+    moves: List[NamedAPIResource] = None
+    pokemon_species: List[NamedAPIResource] = None
+    types: List[NamedAPIResource] = None
+    version_groups: List[NamedAPIResource] = None

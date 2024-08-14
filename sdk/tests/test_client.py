@@ -1,8 +1,8 @@
 import unittest
 from unittest.mock import patch, MagicMock
-from client import PokeAPIClient
-from models.pokemon import Pokemon
-from models.generation import Generation
+from sdk.client import PokeAPIClient
+from sdk.models.pokemon import Pokemon
+from sdk.models.generation import Generation
 
 
 class TestPokeAPIClient(unittest.TestCase):
