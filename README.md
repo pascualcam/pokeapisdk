@@ -63,4 +63,4 @@ A test file `test_client.py` includes simple scenarios to test the SDK. Specific
 
 - The PokeAPI SDK relies heavily on the [Requests](https://pypi.org/project/requests/) library to handle HTTP requests, responses to the PokeAPI endpoints via JSON data, as well as providing HTTP status codes for the requests. 
 
-- This SDK also makes extensive use of the dataclasses library to simplify the modeling of the PokeAPI class instances.
+- This SDK also makes extensive use of the [dataclasses](https://docs.python.org/3/library/dataclasses.html) library to simplify the modeling of the PokeAPI class instances.
