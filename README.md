@@ -37,6 +37,7 @@ A test file `test_client.py` includes simple scenarios to test the SDK. Specific
 ### Key aspects
 
 - Design
+
     The design of the SDK
 
     - Endpoints:
@@ -47,12 +48,15 @@ A test file `test_client.py` includes simple scenarios to test the SDK. Specific
         - `get_generations_list`: get a list of all generations available
 
 - Assumptions
+
     The assumptions of the SDK
 
 - Limitations
+
     The limitations of the SDK
 
 - Pagination
+
     Some text about pagination
 
 ### Tools
