@@ -8,9 +8,8 @@ class NamedAPIResource:
 
 
 @dataclass
-class PokemonSpecies:
-    name: str
-    url: str
+class PokemonSpecies(NamedAPIResource):
+    pass
 
 
 @dataclass
