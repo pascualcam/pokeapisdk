@@ -27,7 +27,7 @@ class PokeAPIClient:
                 url = url.replace(self.base_url, "")
         return results
     
-    def get_pokemon(self, identifier: Union[str, int]) -> Pokemon:
+    def get_pokemon(self, identifier: str | int) -> Pokemon:
         """Get a pokemon by name or id"""
         response = self._get(f"pokemon/{identifier}")
         return Pokemon(
@@ -53,7 +53,7 @@ class PokeAPIClient:
             pokemons.append(Pokemon(**pokemon_data))
         return pokemons
 
-    def get_generation(self, identifier: Union[str, int]) -> Generation:
+    def get_generation(self, identifier: str | int) -> Generation:
         """Get a pokemon generation by name or id"""
         response = self._get(f"generation/{identifier}")
         main_region = NamedAPIResource(**response["main_region"])
@@ -74,7 +74,7 @@ class PokeAPIClient:
             generations.append(Generation(**generation_details))
         return generations
     
-    def get_species_by_generation(self, generation_id: Union[str, int]) -> List[str]:
+    def get_species_by_generation(self, generation_id: str | int) -> List[str]:
         """Get a list of species introduced in the specified generation"""
         generation = self.get_generation(generation_id)
         species_names = [species.name for species in generation.pokemon_species]
