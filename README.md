@@ -27,13 +27,13 @@ for pokemon in pokemons:
 
 Three files provide implementations to interact with PokeAPI from the command line:
 
-- `pokemon_random.py`
+- `pick_one.py`
     - Provide a pokemon id (by name or id) or a random pokemon will be displayed
     - Provide a generation id or random generation will be displayed
 
-- `pokemon_list.py`
-    - Returns a list of all or `n` pokemons
-    - Returns a list of all generations
+- `get_all.py`
+    - Returns a list of all, none, or `n` pokemons
+    - Returns a list of all or no generations
 
 - `species.py`
     - For a given generation id, it returns all the species that were introduced with this generation
