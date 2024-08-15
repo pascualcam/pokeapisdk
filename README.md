@@ -25,7 +25,7 @@ for pokemon in pokemons:
 
 #### Running the code
 
-The following three files provide implementations to interact with PokeAPI from the command line. Simply run the file with `python <file_name>`.
+The following three files provide implementations to interact with PokeAPI from the command line. Simply run the file with `python <file_name>` and follow the prompts.
 
 - `pick_one.py`
     - Provide a pokemon id (by name or id) or a random pokemon will be displayed
