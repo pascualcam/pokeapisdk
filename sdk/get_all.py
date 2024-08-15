@@ -7,18 +7,18 @@ from logger import setup_logger
 
 
 @click.command()
-@click.option("--all_pokemons/--no_pokemons", default=False, prompt="See all pokemons?")
-@click.option("--all_gen/--no_gen", default=False, prompt="See all generations?")
+@click.option("--all_pokemons/--no_pokemons", default=False, prompt="See list of pokemons?")
+@click.option("--all_gen/--no_gen", default=False, prompt="See list of generations?")
 def main(all_pokemons: bool, all_gen: bool):
     pokeclient = PokeAPIClient()
     
     try:
-        limit = click.prompt(
-            "Select how many Pokemons to display from the top", default=10, type=int
-        )
-        logger.info("This may take a while...")
-        pokemons: List[Pokemon] = pokeclient.get_pokemons_list()
         if all_pokemons:
+            limit = click.prompt(
+                "Select how many Pokemons to display from the top", default=10, type=int
+            )
+            logger.info("This may take a while...")
+            pokemons: List[Pokemon] = pokeclient.get_pokemons_list()
             logger.info(f"Total number of pokemons: {len(pokemons)}")
             logger.info("List of Pokemons:")
             for pokemon in pokemons[:limit]:
