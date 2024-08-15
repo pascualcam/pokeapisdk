@@ -1,5 +1,5 @@
 import requests
-from typing import Any, Dict, List, Union
+from typing import List
 from sdk.models.pokemon import Pokemon, PokemonSpecies, NamedAPIResource
 from sdk.models.generation import Generation
 
